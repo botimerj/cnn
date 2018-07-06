@@ -1,5 +1,7 @@
 % Convolution Practice
-function conv_practice
+clear all;
+
+%function conv_practice
     new_test = 'N';
 
     %Special cases
@@ -42,4 +44,23 @@ function conv_practice
         dlmwrite('h.txt',h,'-append'); dlmwrite('h.txt',new_test,'-append');
               
     end
-end
+    
+    %conv2_valid testing
+    f = [1.1,2,3; 1,2,3; 1,2,3];
+    g = [1,2; 1,2.2];
+    h = conv2(f,g,'valid');
+    dlmwrite('f.txt',f,'-append'); dlmwrite('f.txt',new_test,'-append');
+    dlmwrite('g.txt',g,'-append'); dlmwrite('g.txt',new_test,'-append');
+    dlmwrite('h.txt',h,'-append'); dlmwrite('h.txt',new_test,'-append');
+    
+    load ../../mnist/cnn_4904_000638
+    load ../../mnist/images1.mat
+    f = images1;
+    g = cnn.layers{1}.W(:,:,1);
+    h = conv2(f,g,'valid');
+    
+    dlmwrite('f.txt',f,'-append'); dlmwrite('f.txt',new_test,'-append');
+    dlmwrite('g.txt',g,'-append'); dlmwrite('g.txt',new_test,'-append');
+    dlmwrite('h.txt',h,'-append'); dlmwrite('h.txt',new_test,'-append');
+    
+%end
